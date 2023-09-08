@@ -1,13 +1,61 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title>Register a New Movie</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    
+    <ion-item>
+      <ion-input label="Title" placeholder="Enter movie title" [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Genre" placeholder="Select movie genre" [(ngModel)]="genre">
+        <ion-select-option value="0">Adventure</ion-select-option>
+        <ion-select-option value="1">Comedy</ion-select-option>
+        <ion-select-option value="2">Horror</ion-select-option>
+        <ion-select-option value="3">Drama</ion-select-option>
+        <ion-select-option value="4">Romance</ion-select-option>
+        <ion-select-option value="5">Thriller</ion-select-option>
+        <ion-select-option value="6">Sci-fi</ion-select-option>
+        <ion-select-option value="7">Crime</ion-select-option>
+        <ion-select-option value="8">Musical</ion-select-option>
+        <ion-select-option value="9">Animation</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Target age" placeholder="Select target age" [(ngModel)]="age">
+        <ion-select-option value="L">L</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+        <ion-select-option value="12">12</ion-select-option>
+        <ion-select-option value="14">14</ion-select-option>
+        <ion-select-option value="16">16</ion-select-option>
+        <ion-select-option value="18">18</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Year" type="number" placeholder="Enter movie year" [(ngModel)]="year"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Director" placeholder="Enter movie director" [(ngModel)]="director"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Synopsis" placeholder="Enter movie synopsis" [(ngModel)]="synopsis"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="tertiary" (click)="register()">Save</ion-button>
+
+  <ion-fab horizontal="start" vertical="bottom">
+    <ion-fab-button color="tertiary" (click)="goToHome()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  </ion-list>
 </ion-content>

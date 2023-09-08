@@ -25,6 +25,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {}
 
+  goToHome() {
+    this.router.navigate(["/home"]);
+  }
+
   register() {
     if (this.title && this.genre && this.age) {
       let create: Movie = new Movie(this.title, this.genre, this.age);
