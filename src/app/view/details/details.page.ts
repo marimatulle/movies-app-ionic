@@ -20,6 +20,7 @@ export class DetailsPage implements OnInit {
   year!: number;
   director!: string;
   synopsis!: string;
+  imageUrl!: string;
   movie!: Movie;
   edit: boolean = true;
 

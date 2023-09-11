@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   public synopsis!: string;
   public year!: number;
   public director!: string;
+  public imageUrl!: string;
 
   constructor(
     private alertController: AlertController,
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit {
       create.year = this.year;
       create.synopsis = this.synopsis;
       create.director = this.director;
+      create.imageUrl = this.imageUrl;
       this.movieService.register(create);
       this.router.navigate(['/home']);
     } else {

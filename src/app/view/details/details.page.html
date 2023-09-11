@@ -10,14 +10,14 @@
       aria-label="Success toggle"
       color="success"
       (ionChange)="enable()"
-      >Enable/disable edit mode</ion-toggle
+      >Enable/disable edit mode:</ion-toggle
     >
   </ion-item>
 
   <ion-list>
     <ion-item>
       <ion-input
-        label="Title"
+        label="Title:"
         placeholder="Enter movie title"
         [(ngModel)]="title"
         disabled="{{edit}}"
@@ -26,7 +26,7 @@
 
     <ion-item>
       <ion-select
-        label="Genre"
+        label="Genre:"
         placeholder="Select movie genre"
         [(ngModel)]="genre"
         disabled="{{edit}}"
@@ -46,7 +46,7 @@
 
     <ion-item>
       <ion-select
-        label="Target age"
+        label="Target age:"
         placeholder="Select target age"
         [(ngModel)]="age"
         disabled="{{edit}}"
@@ -62,7 +62,7 @@
 
     <ion-item>
       <ion-input
-        label="Year"
+        label="Year:"
         type="number"
         placeholder="Enter movie year"
         [(ngModel)]="year"
@@ -72,7 +72,7 @@
 
     <ion-item>
       <ion-input
-        label="Director"
+        label="Director:"
         placeholder="Enter movie director"
         [(ngModel)]="director"
         disabled="{{edit}}"
@@ -81,10 +81,20 @@
 
     <ion-item>
       <ion-input
-        label="Synopsis"
+        label="Synopsis:"
         placeholder="Enter movie synopsis"
         [(ngModel)]="synopsis"
         disabled="{{edit}}"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Image URL:"
+        type="url"
+        placeholder="Enter image URL"
+        [(ngModel)]="imageUrl"
+        disabled="{{ edit }}"
       ></ion-input>
     </ion-item>
 
