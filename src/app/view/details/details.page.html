@@ -4,19 +4,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <ion-item>
-    <ion-toggle aria-label="Success toggle" color="success" (ionChange)="enable()">Enable/disable edit mode</ion-toggle>
+    <ion-toggle
+      aria-label="Success toggle"
+      color="success"
+      (ionChange)="enable()"
+      >Enable/disable edit mode</ion-toggle
+    >
   </ion-item>
 
   <ion-list>
-
     <ion-item>
-      <ion-input label="Title" placeholder="Enter movie title" [(ngModel)]="title" disabled="{{edit}}"></ion-input>
+      <ion-input
+        label="Title"
+        placeholder="Enter movie title"
+        [(ngModel)]="title"
+        disabled="{{edit}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-select label="Genre" placeholder="Select movie genre" [(ngModel)]="genre" disabled="{{edit}}">
+      <ion-select
+        label="Genre"
+        placeholder="Select movie genre"
+        [(ngModel)]="genre"
+        disabled="{{edit}}"
+      >
         <ion-select-option value="0">Adventure</ion-select-option>
         <ion-select-option value="1">Comedy</ion-select-option>
         <ion-select-option value="2">Horror</ion-select-option>
@@ -31,7 +45,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-select label="Target age" placeholder="Select target age" [(ngModel)]="age" disabled="{{edit}}">
+      <ion-select
+        label="Target age"
+        placeholder="Select target age"
+        [(ngModel)]="age"
+        disabled="{{edit}}"
+      >
         <ion-select-option value="L">L</ion-select-option>
         <ion-select-option value="10">10</ion-select-option>
         <ion-select-option value="12">12</ion-select-option>
@@ -42,25 +61,44 @@
     </ion-item>
 
     <ion-item>
-      <ion-input label="Year" type="number" placeholder="Enter movie year" [(ngModel)]="year" disabled="{{edit}}"></ion-input>
+      <ion-input
+        label="Year"
+        type="number"
+        placeholder="Enter movie year"
+        [(ngModel)]="year"
+        disabled="{{edit}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input label="Director" placeholder="Enter movie director" [(ngModel)]="director" disabled="{{edit}}"></ion-input>
+      <ion-input
+        label="Director"
+        placeholder="Enter movie director"
+        [(ngModel)]="director"
+        disabled="{{edit}}"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input label="Synopsis" placeholder="Enter movie synopsis" [(ngModel)]="synopsis" disabled="{{edit}}"></ion-input>
+      <ion-input
+        label="Synopsis"
+        placeholder="Enter movie synopsis"
+        [(ngModel)]="synopsis"
+        disabled="{{edit}}"
+      ></ion-input>
     </ion-item>
 
-    <ion-button expand="block" (click)="toEdit()" color="tertiary">Save</ion-button>
-    <ion-button expand="block" (click)="exclude()" color="danger">Delete</ion-button>
-
-    <ion-fab horizontal="start" vertical="bottom">
-      <ion-fab-button color="tertiary" (click)="goToHome()">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
+    <ion-button expand="block" (click)="toEdit()" color="tertiary"
+      >Save</ion-button
+    >
+    <ion-button expand="block" (click)="exclude()" color="danger"
+      >Delete</ion-button
+    >
   </ion-list>
+
+  <ion-fab horizontal="start" vertical="bottom">
+    <ion-fab-button color="tertiary" (click)="goToHome()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
