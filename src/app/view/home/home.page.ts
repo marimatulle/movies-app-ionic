@@ -10,18 +10,21 @@ import { MovieService } from 'src/app/model/services/movie.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public allMovies: Movie[] = []
-  
-  constructor(private alertController: AlertController,
-    private router: Router, private movieService: MovieService) {
-      this.allMovies = this.movieService.getAll();
-    }
+  public allMovies: Movie[] = [];
 
-    goToRegister() {
-      this.router.navigate(["/register"]);
-    }
+  constructor(
+    private alertController: AlertController,
+    private router: Router,
+    private movieService: MovieService
+  ) {
+    this.allMovies = this.movieService.getAll();
+  }
 
-    edit(index: number) {
-      this.router.navigate(["/details", index]);
-    }
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
+  edit(index: number) {
+    this.router.navigate(['/details', index]);
+  }
 }

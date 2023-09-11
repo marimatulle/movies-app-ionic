@@ -1,23 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      All Movies
-    </ion-title>
+    <ion-title> All Movies </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-list *ngFor="let movie of this.allMovies; let i = index">
+  <ion-list *ngFor="let movie of allMovies; let i = index">
     <ion-item (click)="edit(i)">
-      <ion-label>{{movie.title}}</ion-label>
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <ion-img
+                [src]="movie.imageUrl"
+                alt="Movie Poster"
+                class="small-image"
+              ></ion-img>
+            </ion-col>
+            <ion-col size="10">
+              <h2>{{ movie.title }}</h2>
+              <p class="year">{{ movie.year }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-fab horizontal="end" vertical="bottom">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="tertiary" (click)="goToRegister()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
