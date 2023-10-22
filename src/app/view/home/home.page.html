@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let movie of allMovies; let i = index">
-    <ion-item (click)="edit(i)">
+    <ion-item (click)="edit(movie)">
       <ion-label>
         <ion-grid>
           <ion-row>

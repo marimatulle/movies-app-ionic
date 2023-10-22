@@ -1,4 +1,5 @@
 export class Movie {
+  private _id!: string;
   private _title: string;
   private _genre: number;
   private _age: string;
@@ -60,5 +61,12 @@ export class Movie {
   }
   public set imageUrl(value: string) {
     this._imageUrl = value;
+  }
+
+  public get id(): string {
+    return this._id;
+  }
+  public set id(value: string) {
+    this._id = value;
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
-import { MovieService } from 'src/app/model/services/movie.service';
+import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private movieService: MovieService
+    private firebase: FirebaseService
   ) {}
 
   ngOnInit() {}
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       create.synopsis = this.synopsis;
       create.director = this.director;
       create.imageUrl = this.imageUrl;
-      this.movieService.register(create);
+      this.firebase.register(create);
       this.router.navigate(['/home']);
     } else {
       this.presentAlert('ERROR', 'TITLE, GENRE AND AGE ARE REQUIRED FIELDS!');

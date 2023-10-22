@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
-import { MovieService } from 'src/app/model/services/movie.service';
+import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -15,16 +15,23 @@ export class HomePage {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private movieService: MovieService
+    private firebase: FirebaseService
   ) {
-    this.allMovies = this.movieService.getAll();
+    this.firebase.findAll().subscribe((res) => {
+      this.allMovies = res.map((movie) => {
+        return {
+          id: movie.payload.doc.id,
+          ...(movie.payload.doc.data() as any),
+        } as Movie;
+      });
+    });
   }
 
   goToRegister() {
     this.router.navigate(['/register']);
   }
 
-  edit(index: number) {
-    this.router.navigate(['/details', index]);
+  edit(movie: Movie) {
+    this.router.navigateByUrl('/details', { state: { movie: movie } });
   }
 }
