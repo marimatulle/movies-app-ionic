@@ -31,7 +31,6 @@ export class DetailsPage implements OnInit {
   ngOnInit() {
     this.movie = history.state.movie;
 
-    debugger;
     this.title = this.movie?.title;
     this.genre = this.movie?.genre;
     this.age = this.movie?.age;
