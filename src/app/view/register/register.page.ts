@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   public year!: number;
   public director!: string;
   public imageUrl!: string;
+  public uploadImage: any; 
 
   constructor(
     private alertController: AlertController,
@@ -28,6 +29,10 @@ export class RegisterComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(["/home"]);
+  }
+
+  uploadFile(image: any) {
+    this.uploadImage = image.files;
   }
 
   register() {

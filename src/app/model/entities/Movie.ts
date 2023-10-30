@@ -7,6 +7,7 @@ export class Movie {
   private _director!: string;
   private _synopsis!: string;
   private _imageUrl!: string;
+  private _uploadImage: any;
 
   constructor(title: string, genre: number, age: string) {
     this._title = title;
@@ -68,5 +69,13 @@ export class Movie {
   }
   public set id(value: string) {
     this._id = value;
+  }
+
+  public get uploadImage(): any {
+    return this._uploadImage;
+  }
+
+  public set uploadImage(value: any) {
+    this._uploadImage = value;
   }
 }

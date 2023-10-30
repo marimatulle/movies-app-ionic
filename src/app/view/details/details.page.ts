@@ -18,11 +18,11 @@ export class DetailsPage implements OnInit {
   director!: string;
   synopsis!: string;
   imageUrl!: string;
+  uploadImage!: any;
   movie!: Movie;
   edit: boolean = true;
 
   constructor(
-    private actRoute: ActivatedRoute,
     private firebase: FirebaseService,
     private router: Router,
     private alertController: AlertController
@@ -30,7 +30,6 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     this.movie = history.state.movie;
-
     this.title = this.movie?.title;
     this.genre = this.movie?.genre;
     this.age = this.movie?.age;
@@ -42,9 +41,12 @@ export class DetailsPage implements OnInit {
   enable() {
     if (this.edit) {
       this.edit = false;
-    } else {
-      this.edit = true;
-    }
+    } 
+    this.edit = true;
+  }
+
+  uploadFile(image: any) {
+    this.uploadImage = image.files;
   }
 
   toEdit() {
@@ -54,18 +56,20 @@ export class DetailsPage implements OnInit {
       create.director = this.director;
       create.synopsis = this.synopsis;
       create.id = this.movie.id;
-      this.firebase
-        .update(create, this.movie.id)
-        .then(() => {
-          this.router.navigate(['/home']);
-        })
-        .catch((error) => {
-          console.log(error);
-          this.presentAlert('ERROR', 'Error updating movie');
-        });
-    } else {
-      this.presentAlert('ERROR', 'TITLE, GENRE AND AGE ARE REQUIRED FIELDS!');
+      
+      if(this.uploadImage) {
+        this.firebase.addImage(this.uploadImage, create)
+        ?.then(() => {this.router.navigate(['/home']);})
+      }
+      create.uploadImage = this.movie.uploadImage;
+      this.firebase.update(create, this.movie.id)
+      .then(() => {this.router.navigate(['/home']);})
+      .catch((error) => {
+        console.log(error);
+        this.presentAlert('ERROR', 'Error updating movie');
+      })
     }
+    this.presentAlert('ERROR', 'Required fields are missing')
   }
 
   exclude() {

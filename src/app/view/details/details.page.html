@@ -88,14 +88,11 @@
       ></ion-input>
     </ion-item>
 
+    <img src="{{this.movie.uploadImage}}" />
     <ion-item>
-      <ion-input
-        label="Image URL:"
-        type="url"
-        placeholder="Enter image URL"
-        [(ngModel)]="imageUrl"
-        disabled="{{ edit }}"
-      ></ion-input>
+      <ion-button size="default" color="tertiary" shape="round" disabled="{{edit}}">
+        <input type="file" (change)="uploadFile($event.target)" />
+      </ion-button>
     </ion-item>
 
     <ion-button expand="block" (click)="toEdit()" color="tertiary"
