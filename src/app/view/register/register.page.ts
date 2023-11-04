@@ -16,8 +16,7 @@ export class RegisterComponent implements OnInit {
   public synopsis!: string;
   public year!: number;
   public director!: string;
-  public imageUrl!: string;
-  public uploadImage: any; 
+  public image: any; 
 
   constructor(
     private alertController: AlertController,
@@ -32,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   uploadFile(image: any) {
-    this.uploadImage = image.files;
+    this.image = image.files;
   }
 
   register() {
@@ -41,12 +40,20 @@ export class RegisterComponent implements OnInit {
       create.year = this.year;
       create.synopsis = this.synopsis;
       create.director = this.director;
-      create.imageUrl = this.imageUrl;
-      this.firebase.register(create);
-      this.router.navigate(['/home']);
-    } else {
-      this.presentAlert('ERROR', 'TITLE, GENRE AND AGE ARE REQUIRED FIELDS!');
+      if(this.image) {
+        this.firebase.addImage(this.image, create)
+        ?.then(() => {
+          this.router.navigate(['/home']);
+        })
+      }
+      this.firebase.register(create)
+      .then(() => this.router.navigate(['/home']))
+      .catch((error) => {
+        console.log(error);
+        this.presentAlert('ERROR', 'Error saving movie!');
+      })
     }
+    this.presentAlert('ERROR', 'Required fields are missing!');
   }
 
   async presentAlert(subHeader: string, message: string) {

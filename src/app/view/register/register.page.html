@@ -74,12 +74,9 @@
     </ion-item>
 
     <ion-item>
-      <ion-input
-        label="Image URL:"
-        type="url"
-        placeholder="Enter image URL"
-        [(ngModel)]="imageUrl"
-      ></ion-input>
+      <ion-button size="default" color="tertiary" shape="round">
+        <input type="file" (change)="uploadFile($event.target)" />
+      </ion-button>
     </ion-item>
 
     <ion-button expand="block" color="tertiary" (click)="register()"

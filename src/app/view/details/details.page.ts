@@ -17,8 +17,7 @@ export class DetailsPage implements OnInit {
   year!: number;
   director!: string;
   synopsis!: string;
-  imageUrl!: string;
-  uploadImage!: any;
+  image!: any;
   movie!: Movie;
   edit: boolean = true;
 
@@ -38,15 +37,12 @@ export class DetailsPage implements OnInit {
     this.synopsis = this.movie?.synopsis;
   }
 
-  enable() {
-    if (this.edit) {
-      this.edit = false;
-    } 
-    this.edit = true;
-  }
+enable() {
+  this.edit = !this.edit;
+}
 
   uploadFile(image: any) {
-    this.uploadImage = image.files;
+    this.image = image.files;
   }
 
   toEdit() {
@@ -57,19 +53,19 @@ export class DetailsPage implements OnInit {
       create.synopsis = this.synopsis;
       create.id = this.movie.id;
       
-      if(this.uploadImage) {
-        this.firebase.addImage(this.uploadImage, create)
+      if(this.image) {
+        this.firebase.addImage(this.image, create)
         ?.then(() => {this.router.navigate(['/home']);})
       }
-      create.uploadImage = this.movie.uploadImage;
+      create.downloadUrl = this.movie.downloadUrl;
       this.firebase.update(create, this.movie.id)
       .then(() => {this.router.navigate(['/home']);})
       .catch((error) => {
         console.log(error);
-        this.presentAlert('ERROR', 'Error updating movie');
+        this.presentAlert('ERROR', 'Error updating movie!');
       })
     }
-    this.presentAlert('ERROR', 'Required fields are missing')
+    this.presentAlert('ERROR', 'Required fields are missing!')
   }
 
   exclude() {

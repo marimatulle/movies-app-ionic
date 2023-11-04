@@ -26,8 +26,7 @@ export class FirebaseService {
       year: movie.year,
       director: movie.director,
       synopsis: movie.synopsis,
-      imageUrl: movie.imageUrl,
-      uploadImage: movie.uploadImage
+      downloadUrl: movie.downloadUrl
     });
   }
 
@@ -39,8 +38,7 @@ export class FirebaseService {
       year: movie.year,
       director: movie.director,
       synopsis: movie.synopsis,
-      imageUrl: movie.imageUrl,
-      uploadImage: movie.uploadImage
+      downloadUrl: movie.downloadUrl
     });
   }
 
@@ -61,7 +59,7 @@ export class FirebaseService {
       finalize(() => {
         let uploadFileUrl = fileRef.getDownloadURL();
         uploadFileUrl.subscribe(resp => {
-          movie.uploadImage = resp;
+          movie.downloadUrl = resp;
           if(!movie.id) {this.register(movie);
           }
           this.update(movie, movie.id);

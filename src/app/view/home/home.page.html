@@ -6,14 +6,14 @@
 
 <ion-content [fullscreen]="true">
   
-  <ion-list *ngFor="let movie of allMovies;">
+  <ion-list *ngFor="let movie of this.allMovies;">
     <ion-item (click)="edit(movie)">
       <ion-label>
         <ion-grid>
           <ion-row>
             <ion-col size="2">
               <ion-img
-                [src]="movie.uploadImage"
+                [src]="movie.downloadUrl"
                 alt="Movie Poster"
                 class="small-image"
               ></ion-img>

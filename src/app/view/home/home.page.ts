@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
@@ -13,7 +12,6 @@ export class HomePage {
   public allMovies: Movie[] = [];
 
   constructor(
-    private alertController: AlertController,
     private router: Router,
     private firebase: FirebaseService
   ) {

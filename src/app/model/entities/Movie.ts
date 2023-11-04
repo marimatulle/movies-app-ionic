@@ -6,8 +6,7 @@ export class Movie {
   private _year!: number;
   private _director!: string;
   private _synopsis!: string;
-  private _imageUrl!: string;
-  private _uploadImage: any;
+  private _downloadUrl: any;
 
   constructor(title: string, genre: number, age: string) {
     this._title = title;
@@ -57,13 +56,6 @@ export class Movie {
     this._synopsis = value;
   }
 
-  public get imageUrl(): string {
-    return this._imageUrl;
-  }
-  public set imageUrl(value: string) {
-    this._imageUrl = value;
-  }
-
   public get id(): string {
     return this._id;
   }
@@ -71,11 +63,11 @@ export class Movie {
     this._id = value;
   }
 
-  public get uploadImage(): any {
-    return this._uploadImage;
+  public get downloadUrl(): any {
+    return this._downloadUrl;
   }
 
-  public set uploadImage(value: any) {
-    this._uploadImage = value;
+  public set downloadUrl(value: any) {
+    this._downloadUrl = value;
   }
 }

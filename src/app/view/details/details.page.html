@@ -20,7 +20,7 @@
         label="Title:"
         placeholder="Enter movie title"
         [(ngModel)]="title"
-        disabled="{{edit}}"
+        [disabled]="edit"
       ></ion-input>
     </ion-item>
 
@@ -29,7 +29,7 @@
         label="Genre:"
         placeholder="Select movie genre"
         [(ngModel)]="genre"
-        disabled="{{edit}}"
+        [disabled]="edit"
       >
         <ion-select-option value="0">Adventure</ion-select-option>
         <ion-select-option value="1">Comedy</ion-select-option>
@@ -49,7 +49,7 @@
         label="Target age:"
         placeholder="Select target age"
         [(ngModel)]="age"
-        disabled="{{edit}}"
+        [disabled]="edit"
       >
         <ion-select-option value="L">L</ion-select-option>
         <ion-select-option value="10">10</ion-select-option>
@@ -66,7 +66,7 @@
         type="number"
         placeholder="Enter movie year"
         [(ngModel)]="year"
-        disabled="{{edit}}"
+        [disabled]="edit"
       ></ion-input>
     </ion-item>
 
@@ -75,7 +75,7 @@
         label="Director:"
         placeholder="Enter movie director"
         [(ngModel)]="director"
-        disabled="{{edit}}"
+        [disabled]="edit"
       ></ion-input>
     </ion-item>
 
@@ -84,21 +84,33 @@
         label="Synopsis:"
         placeholder="Enter movie synopsis"
         [(ngModel)]="synopsis"
-        disabled="{{edit}}"
+        [disabled]="edit"
       ></ion-input>
     </ion-item>
 
-    <img src="{{this.movie.uploadImage}}" />
     <ion-item>
-      <ion-button size="default" color="tertiary" shape="round" disabled="{{edit}}">
+      <ion-button
+        size="default"
+        color="tertiary"
+        shape="round"
+        [disabled]="edit"
+      >
         <input type="file" (change)="uploadFile($event.target)" />
       </ion-button>
     </ion-item>
 
-    <ion-button expand="block" (click)="toEdit()" color="tertiary"
+    <ion-button
+      expand="block"
+      (click)="toEdit()"
+      color="tertiary"
+      [disabled]="edit"
       >Save</ion-button
     >
-    <ion-button expand="block" (click)="exclude()" color="danger"
+    <ion-button
+      expand="block"
+      (click)="exclude()"
+      color="danger"
+      [disabled]="edit"
       >Delete</ion-button
     >
   </ion-list>
