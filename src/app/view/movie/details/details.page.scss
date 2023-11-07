@@ -1,0 +1,19 @@
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+ion-button {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clickable {
+    pointer-events: auto;
+}
+
+.button-edit {
+    width: 20%;
+}

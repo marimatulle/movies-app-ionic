@@ -37,9 +37,9 @@ export class DetailsPage implements OnInit {
     this.synopsis = this.movie?.synopsis;
   }
 
-enable() {
-  this.edit = !this.edit;
-}
+  enable() {
+    this.edit = !this.edit;
+  }
 
   uploadFile(image: any) {
     this.image = image.files;
@@ -52,20 +52,24 @@ enable() {
       create.director = this.director;
       create.synopsis = this.synopsis;
       create.id = this.movie.id;
-      
-      if(this.image) {
-        this.firebase.addImage(this.image, create)
-        ?.then(() => {this.router.navigate(['/home']);})
+
+      if (this.image) {
+        this.firebase.addImage(this.image, create)?.then(() => {
+          this.router.navigate(['/home']);
+        });
       }
       create.downloadUrl = this.movie.downloadUrl;
-      this.firebase.update(create, this.movie.id)
-      .then(() => {this.router.navigate(['/home']);})
-      .catch((error) => {
-        console.log(error);
-        this.presentAlert('ERROR', 'Error updating movie!');
-      })
+      this.firebase
+        .update(create, this.movie.id)
+        .then(() => {
+          this.router.navigate(['/home']);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.presentAlert('ERROR', 'Error updating movie!');
+        });
     }
-    this.presentAlert('ERROR', 'Required fields are missing!')
+    this.presentAlert('ERROR', 'Required fields are missing!');
   }
 
   exclude() {

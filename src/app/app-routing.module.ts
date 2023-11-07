@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./view/home/home.module').then((m) => m.HomePageModule),
+      import('./view/movie/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: '',
@@ -15,17 +15,14 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () =>
-      import('./view/register/register.module').then(
+      import('./view/movie/register/register.module').then(
         (m) => m.RegisterPageModule
       ),
   },
   {
     path: 'details',
     loadChildren: () =>
-      import('./view/details/details.module').then((m) => m.DetailsPageModule),
-  },  {
-    path: 'signup',
-    loadChildren: () => import('./user/signup/signup.module').then( m => m.SignupPageModule)
+      import('./view/movie/details/details.module').then((m) => m.DetailsPageModule),
   },
   {
     path: 'signup',

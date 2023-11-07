@@ -79,9 +79,11 @@
       </ion-button>
     </ion-item>
 
-    <ion-button expand="block" color="tertiary" (click)="register()"
-      >Save</ion-button
-    >
+    <div class="button-container">
+      <ion-button (click)="register()" color="success">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </div>
   </ion-list>
 
   <ion-fab horizontal="start" vertical="bottom">
