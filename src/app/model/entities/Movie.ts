@@ -7,6 +7,7 @@ export class Movie {
   private _director!: string;
   private _synopsis!: string;
   private _downloadUrl: any;
+  private _uid!: string;
 
   constructor(title: string, genre: number, age: string) {
     this._title = title;
@@ -66,8 +67,14 @@ export class Movie {
   public get downloadUrl(): any {
     return this._downloadUrl;
   }
-
   public set downloadUrl(value: any) {
     this._downloadUrl = value;
+  }
+
+  public get uid(): string {
+    return this._uid;
+  }
+  public set uid(value: string) {
+    this._uid = value;
   }
 }

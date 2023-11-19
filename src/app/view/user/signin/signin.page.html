@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar>
-    <ion-title>signin</ion-title>
+    <ion-title>Welcome!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signin</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <form [formGroup]="signInto" (ngSubmit)="submitForm()" novalidate>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      
+      <span *ngIf="signInto.get('email')?.touched &&
+      signInto.get('email')?.errors?.['required']">Email is required</span>
+      <span  *ngIf="signInto.get('email')?.dirty &&
+      signInto.get('email')?.errors?.['email']">Invalid format</span>
+      
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+           
+            <span *ngIf="signInto.get('password')?.touched &&
+            signInto.get('password')?.errors?.['required']">Password is required</span>
+            <span  *ngIf="signInto.get('password')?.dirty &&
+            signInto.get('password')?.errors?.['minlength']">Password must be 8 characteres</span>
+            
+      <ion-button expand="full" color="success" type="submit">Sign-in</ion-button>
+      <ion-button expand="full" color="danger" (click)="signinWithGmail()">
+        Sign-in with Google <ion-icon slot="end" name="logo-google"></ion-icon>
+      </ion-button>
+    </form>
+    <a (click)="goToRegister()">Don't have an account? Click here!</a>
+  </ion-list>
 </ion-content>
+

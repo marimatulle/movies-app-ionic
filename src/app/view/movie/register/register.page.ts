@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -17,12 +18,16 @@ export class RegisterComponent implements OnInit {
   public year!: number;
   public director!: string;
   public image: any; 
+  user: any;
 
   constructor(
     private alertController: AlertController,
+    private auth: AuthService,
     private router: Router,
     private firebase: FirebaseService
-  ) {}
+  ) {
+    this.user = this.auth.getLoggedInUser();
+  }
 
   ngOnInit() {}
 
@@ -40,6 +45,7 @@ export class RegisterComponent implements OnInit {
       create.year = this.year;
       create.synopsis = this.synopsis;
       create.director = this.director;
+      create.uid = this.user.uid;
       if(this.image) {
         this.firebase.addImage(this.image, create)
         ?.then(() => {

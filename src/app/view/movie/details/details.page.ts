@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
+import { AuthService } from 'src/app/model/services/auth.service';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
 
 @Component({
@@ -20,12 +21,16 @@ export class DetailsPage implements OnInit {
   image!: any;
   movie!: Movie;
   edit: boolean = true;
+  user: any;
 
   constructor(
     private firebase: FirebaseService,
     private router: Router,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private auth: AuthService
+  ) {
+    this.user = this.auth.getLoggedInUser();
+  }
 
   ngOnInit() {
     this.movie = history.state.movie;
@@ -52,6 +57,7 @@ export class DetailsPage implements OnInit {
       create.director = this.director;
       create.synopsis = this.synopsis;
       create.id = this.movie.id;
+      create.uid = this.user.uid;
 
       if (this.image) {
         this.firebase.addImage(this.image, create)?.then(() => {
