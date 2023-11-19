@@ -59,6 +59,16 @@ signInto!: FormGroup;
     })
   }
 
+  signinWithTwitter() {
+    this.auth.signinWithX()
+    .then((res) => {
+      this.alert.presentAlert('OK', 'Welcome!');
+      this.router.navigate(['home']);})
+    .catch((error) => {
+      this.alert.presentAlert('OK', 'Error when signing in! Try again');
+    })
+  }
+
   goToRegister() {
     this.router.navigate(['/signup']);
   }

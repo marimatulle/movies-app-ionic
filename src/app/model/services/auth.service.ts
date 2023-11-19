@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { getAuth, signInWithPopup, browserPopupRedirectResolver, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, browserPopupRedirectResolver, GoogleAuthProvider, TwitterAuthProvider } from 'firebase/auth';
 import { User } from '../entities/User';
 
 @Injectable({
@@ -57,6 +57,12 @@ export class AuthService {
 
   public signinWithGoogle() {
     const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    return signInWithPopup(auth, provider, browserPopupRedirectResolver);
+  }
+
+  public signinWithX() {
+    const provider = new TwitterAuthProvider();
     const auth = getAuth();
     return signInWithPopup(auth, provider, browserPopupRedirectResolver);
   }
