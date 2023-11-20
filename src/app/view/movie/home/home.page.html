@@ -1,46 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Hello, {{ user ? user.displayName : 'there'}} </ion-title>
-    <span *ngIf="user">
-      <ion-button color="danger" (click)="logOut()">Sign-out </ion-button>
-    </span>
+    <ion-title> Hello, {{ user.displayName }} </ion-title>
+    <ion-button color="danger" (click)="logOut()">Sign-out </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngIf="user">
-    <ion-list *ngFor="let movie of this.allMovies;">
-      <ion-item (click)="edit(movie)">
-        <ion-label>
-          <ion-grid>
-            <ion-row>
-              <ion-col size="2">
-                <ion-img
-                  [src]="movie.downloadUrl"
-                  alt="Movie Poster"
-                  class="small-image"
-                ></ion-img>
-              </ion-col>
-              <ion-col size="10">
-                <h2>{{ movie.title }}</h2>
-                <p class="year">{{ movie.year }}</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="tertiary" (click)="goToRegister()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
+  <ion-list *ngFor="let movie of this.movies;">
+    <ion-item (click)="edit(movie)">
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <ion-img
+                [src]="movie.downloadUrl"
+                alt="Movie Poster"
+                class="small-image"
+              ></ion-img>
+            </ion-col>
+            <ion-col size="10">
+              <h2>{{ movie.title }}</h2>
+              <p class="year">{{ movie.year }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-  <div *ngIf="!user">
-    <ion-header>
-      You need to be logged in to access the list of movies
-    </ion-header>
-    <ion-button (click)="logOut()"> Sign-in </ion-button>
-  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" (click)="goToRegister()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

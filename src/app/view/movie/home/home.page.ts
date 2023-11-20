@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/model/services/auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public allMovies: Movie[] = [];
+  public movies: Movie[] = [];
   public user: any;
 
   constructor(
@@ -22,7 +22,7 @@ export class HomePage {
     this.user = this.auth.getLoggedInUser();
 
     this.firebase.findAll().subscribe((res) => {
-      this.allMovies = res.map((movie) => {
+      this.movies = res.map((movie) => {
         return {
           id: movie.payload.doc.id,
           ...(movie.payload.doc.data() as any),
