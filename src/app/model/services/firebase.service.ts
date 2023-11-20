@@ -5,14 +5,15 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
-  private PATH: string = "movies";
+  private PATH: string = 'movies';
 
-  constructor(private firestore: AngularFirestore, 
-    private storage: AngularFireStorage) {
-  }
+  constructor(
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {}
 
   findAll() {
     return this.firestore.collection(this.PATH).snapshotChanges();
@@ -26,7 +27,7 @@ export class FirebaseService {
       year: movie.year,
       director: movie.director,
       synopsis: movie.synopsis,
-      downloadUrl: movie.downloadUrl
+      downloadUrl: movie.downloadUrl,
     });
   }
 
@@ -38,7 +39,7 @@ export class FirebaseService {
       year: movie.year,
       director: movie.director,
       synopsis: movie.synopsis,
-      downloadUrl: movie.downloadUrl
+      downloadUrl: movie.downloadUrl,
     });
   }
 
@@ -48,24 +49,28 @@ export class FirebaseService {
 
   addImage(image: any, movie: Movie) {
     const file = image.item(0);
-    if(file.type.split('/')[0] !== 'image') {
+    if (file.type.split('/')[0] !== 'image') {
       console.error('Image not supported');
       return;
     }
-    const path = `images/${movie.title}_${file.name}`
+    const path = `images/${movie.title}_${file.name}`;
     const fileRef = this.storage.ref(path);
     let task = this.storage.upload(path, file);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        let uploadFileUrl = fileRef.getDownloadURL();
-        uploadFileUrl.subscribe(resp => {
-          movie.downloadUrl = resp;
-          if(!movie.id) {this.register(movie);
-          }
-          this.update(movie, movie.id);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          let uploadFileUrl = fileRef.getDownloadURL();
+          uploadFileUrl.subscribe((resp) => {
+            movie.downloadUrl = resp;
+            if (!movie.id) {
+              this.register(movie);
+            }
+            this.update(movie, movie.id);
+          });
         })
-      })
-    ).subscribe();
+      )
+      .subscribe();
     return task;
   }
 }

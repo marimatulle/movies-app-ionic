@@ -36,21 +36,32 @@
       <span
         *ngIf="signInto.get('password')?.dirty &&
             signInto.get('password')?.errors?.['minlength']"
-        >Password must be 8 characteres</span
+        >Password must be 8 characters</span
       >
-
-      <ion-button expand="full" color="success" type="submit"
+      <ion-button expand="full" color="tertiary" type="submit" shape="round"
         >Sign-in</ion-button
       >
-      <ion-button expand="full" color="danger" (click)="signinWithGmail()">
-        Sign-in with Google <ion-icon slot="end" name="logo-google"></ion-icon>
+      <ion-button
+        expand="full"
+        color="danger"
+        shape="round"
+        (click)="signinWithGmail()"
+      >
+        Sign-in with Google
+        <ion-icon slot="end" name="logo-google"></ion-icon>
       </ion-button>
-      <ion-button expand="full" color="secondary" (click)="signinWithTwitter()"
+      <ion-button
+        expand="full"
+        color="secondary"
+        shape="round"
+        (click)="signinWithTwitter()"
         >Sign-in with Twitter
         <ion-icon slot="end" name="logo-twitter"></ion-icon>
       </ion-button>
     </form>
-    
-    <a (click)="goToRegister()">Don't have an account? Click here!</a>
+
+    <a (click)="goToSignup()" class="centered-link">
+      Don't have an account? Click here!
+    </a>
   </ion-list>
 </ion-content>

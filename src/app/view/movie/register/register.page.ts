@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public synopsis!: string;
   public year!: number;
   public director!: string;
-  public image: any; 
+  public image: any;
   user: any;
 
   constructor(
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   goToHome() {
-    this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
   }
 
   uploadFile(image: any) {
@@ -40,26 +40,20 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (this.title && this.genre && this.age) {
-      let create: Movie = new Movie(this.title, this.genre, this.age);
-      create.year = this.year;
-      create.synopsis = this.synopsis;
-      create.director = this.director;
-      create.uid = this.user.uid;
-      if(this.image) {
-        this.firebase.addImage(this.image, create)
-        ?.then(() => {
-          this.router.navigate(['/home']);
-        })
-      }
-      this.firebase.register(create)
-      .then(() => this.router.navigate(['/home']))
-      .catch((error) => {
-        console.log(error);
-        this.presentAlert('ERROR', 'Error saving movie!');
-      })
+    if (!this.title || !this.genre || !this.age || !this.image) {
+      this.presentAlert('ERROR', 'Required fields are missing!');
+      return;
     }
-    this.presentAlert('ERROR', 'Required fields are missing!');
+
+    let newMovie: Movie = new Movie(this.title, this.genre, this.age);
+    newMovie.year = this.year;
+    newMovie.synopsis = this.synopsis;
+    newMovie.director = this.director;
+    newMovie.uid = this.user.uid;
+
+    this.firebase.addImage(this.image, newMovie)?.then((resp) => {
+      this.router.navigate(['/home']);
+    });
   }
 
   async presentAlert(subHeader: string, message: string) {

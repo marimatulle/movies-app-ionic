@@ -39,7 +39,11 @@
         <span *ngIf="registerNewUser.get('confPassword')?.dirty &&
         (registerNewUser.get('password')?.value != registerNewUser.get('confPassword')?.value)">Passwords don't match</span>
        
-      <ion-button expand="full" color="success" type="submit">Cadastrar</ion-button>
+      <ion-button expand="full" color="tertiary" type="submit" shape="round">Register</ion-button>
     </form>
+
+    <a (click)="goToSignin()" class="centered-link">
+      Already have an account? Click here!
+    </a>
   </ion-list>
 </ion-content>

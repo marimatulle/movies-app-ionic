@@ -56,4 +56,8 @@ export class SignupPage implements OnInit {
     })
   }
 
+  goToSignin() {
+    this.router.navigate(['/signin']);
+  }
+
 }

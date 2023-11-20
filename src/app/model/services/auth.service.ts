@@ -2,7 +2,13 @@ import { Injectable, NgZone } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { getAuth, signInWithPopup, browserPopupRedirectResolver, GoogleAuthProvider, TwitterAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  browserPopupRedirectResolver,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+} from 'firebase/auth';
 import { User } from '../entities/User';
 
 @Injectable({
@@ -21,8 +27,9 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
+      } else {
+        localStorage.setItem('user', 'null');
       }
-      localStorage.setItem('user', 'null');
     });
   }
 
