@@ -38,4 +38,9 @@ export class HomePage {
   edit(movie: Movie) {
     this.router.navigateByUrl('/details', { state: { movie: movie } });
   }
+
+  logOut() {
+    this.auth.signOut();
+    this.router.navigate(['signin']);
+  }
 }

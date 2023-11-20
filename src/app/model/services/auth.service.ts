@@ -45,10 +45,9 @@ export class AuthService {
     return this.auth.sendPasswordResetEmail(email);
   }
 
-  public exit() {
+  public signOut() {
     return this.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['signin']);
     });
   }
 

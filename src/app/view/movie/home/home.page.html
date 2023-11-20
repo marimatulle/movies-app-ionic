@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> All Movies </ion-title>
+    <ion-title> Hello, {{ user ? user.displayName : 'there'}} </ion-title>
+    <span *ngIf="user">
+      <ion-button color="danger" (click)="logOut()">Sign-out </ion-button>
+    </span>
   </ion-toolbar>
 </ion-header>
 
@@ -27,13 +30,17 @@
         </ion-label>
       </ion-item>
     </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="tertiary" (click)="goToRegister()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
 
-  <div *ngIf="!user">Please log in</div>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" (click)="goToRegister()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div *ngIf="!user">
+    <ion-header>
+      You need to be logged in to access the list of movies
+    </ion-header>
+    <ion-button (click)="logOut()"> Sign-in </ion-button>
+  </div>
 </ion-content>
