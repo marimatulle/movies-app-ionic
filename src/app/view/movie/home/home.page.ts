@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Movie } from 'src/app/model/entities/Movie';
 import { FirebaseService } from 'src/app/model/services/firebase.service';
+import { AuthService } from 'src/app/model/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,15 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
 })
 export class HomePage {
   public allMovies: Movie[] = [];
+  public user: any;
 
   constructor(
     private router: Router,
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private auth: AuthService
   ) {
+    this.user = this.auth.getLoggedInUser();
+
     this.firebase.findAll().subscribe((res) => {
       this.allMovies = res.map((movie) => {
         return {
