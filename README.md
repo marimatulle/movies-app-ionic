@@ -1,1 +1,1 @@
-# firebase hosting link: [movies-app-db.web.app](movies-app-db.web.app)
+# firebase hosting link: [https://movies-app-db.web.app/signin](https://movies-app-db.web.app/signin)
